@@ -1,4 +1,4 @@
-import { UPDATE_ADDPRICE } from '../actions';
+import { ADD_FEATURE } from '../actions';
 
 const initialState = {
   additionalPrice: 0,
@@ -20,12 +20,14 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   console.log(action);
   switch (action.type) {
-    case UPDATE_ADDPRICE:
-      console.log('Is the action getting here????');
+    case ADD_FEATURE:
+      console.log(state);
       return {
         ...state,
-        additionalPrice: action.payload
-      };
+        additionalPrice: action.payload.price, // <-- ?
+        car: {
+          ...state.car, features: [...state.car.features, action.payload]
+      }};
     default:
       return state;
   }

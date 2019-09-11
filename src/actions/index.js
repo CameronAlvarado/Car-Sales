@@ -1,12 +1,10 @@
-export const UPDATE_ADDPRICE = 'UPDATE_ADDPRICE '; // <-- action type
-export const updateAddPriceAC = price => { // <-- action creator
-  console.log(price);
-  return { type: UPDATE_ADDPRICE, payload: price }; // <-- action
+export const ADD_FEATURE = 'ADD_FEATURE '; // <-- action type
+export const addFeatureAC = feature => { // <-- action creator
+  console.log(feature);
+  return { type: ADD_FEATURE, payload: feature }; // <-- action
 };
 
-// export const TOGGLE_MEMBER = 'TOGGLE_MEMBER';
-// export const toggleMember = index => {
-//   return { type: TOGGLE_MEMBER, payload: index };
-// };
-
-// 2 actions
+export const REMOVE_FEATURE = 'REMOVE_FEATURE';
+export const removeFeatureAC = feature => {
+  return { type: REMOVE_FEATURE, payload: feature };
+};
