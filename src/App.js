@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { updateAddPriceAC } from './actions';
 
 const App = (props) => {
+  console.log(props);
   const state = {
     // additionalPrice: 0,
     // car: {
@@ -51,7 +52,16 @@ const App = (props) => {
 const mapStateToProps = state => {
   console.log('mSTP state:', state);
   return {
-    title: state.title.title
+    additionalPrice: state.additionalPrice,
+    car: {
+      price: state.car.price,
+      name: state.car.name,
+      image: state.car.image,
+      feature: state.car.features
+    },
+    store: [
+      { id: state.store.id, name: state.store.name, price: state.store.price }
+    ]
   };
 };
 
