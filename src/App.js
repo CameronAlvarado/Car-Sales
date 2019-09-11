@@ -50,18 +50,18 @@ const App = (props) => {
 };
 
 const mapStateToProps = state => {
-  console.log('mSTP state:', state);
+  // console.log('mSTP state:', state);
   return {
     additionalPrice: state.additionalPrice,
     car: {
       price: state.car.price,
       name: state.car.name,
       image: state.car.image,
-      feature: state.car.features
+      features: state.car.features
     },
-    store: [
-      { id: state.store.id, name: state.store.name, price: state.store.price }
-    ]
+    store: state.store.map(state => {
+      return { id: state.id, name: state.name, price: state.price }
+    })
   };
 };
 
