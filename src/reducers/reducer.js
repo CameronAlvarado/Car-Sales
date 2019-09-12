@@ -25,9 +25,10 @@ const reducer = (state = initialState, action) => {
       console.log(state);
       return {
         ...state,
-        additionalPrice: state.additionalPrice + action.payload.price,
+        additionalPrice: state.car.features.includes(action.payload) ?  state.additionalPrice : state.additionalPrice + action.payload.price,
         car: {
-          ...state.car, features: [...state.car.features, action.payload]
+          ...state.car, 
+          features: state.car.features.includes(action.payload) ?  state.car.features : [...state.car.features, action.payload]
       }};
     case REMOVE_FEATURE:
     console.log(state);
