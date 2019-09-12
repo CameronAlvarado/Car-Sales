@@ -6,5 +6,6 @@ export const addFeatureAC = feature => { // <-- action creator
 
 export const REMOVE_FEATURE = 'REMOVE_FEATURE';
 export const removeFeatureAC = feature => {
+    console.log(feature);
   return { type: REMOVE_FEATURE, payload: feature };
 };

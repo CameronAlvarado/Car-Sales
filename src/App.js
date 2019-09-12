@@ -6,16 +6,18 @@ import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
 
 import { connect } from 'react-redux';
-import { addFeatureAC } from './actions';
+import { addFeatureAC, removeFeatureAC } from './actions';
 // import { dispatch } from 'rxjs/internal/observable/pairs';
 
 const App = (props) => {
-  // console.log(props);
+  console.log(props);
 
 
 
   const removeFeature = item => {
     // dispatch an action here to remove an item
+    props.removeFeatureAC(item);
+    console.log(item);
   };
 
   const buyItem = item => {
@@ -29,7 +31,7 @@ const App = (props) => {
     <div className="boxes">
       <div className="box">
         <Header car={props.car} />
-        <AddedFeatures car={props.car} />
+        <AddedFeatures car={props.car} removeFeature={removeFeature} />
       </div>
       <div className="box">
         <AdditionalFeatures store={props.store} addFeature={buyItem} />
@@ -43,19 +45,21 @@ const mapStateToProps = state => {
   // console.log('mSTP state:', state);
   return {
     additionalPrice: state.additionalPrice,
-    car: {
-      price: state.car.price,
-      name: state.car.name,
-      image: state.car.image,
-      features: state.car.features
-    },
-    store: state.store.map(state => {
-      return { id: state.id, name: state.name, price: state.price }
-    })
+    car: state.car,
+    // car: {
+    //   price: state.car.price,
+    //   name: state.car.name,
+    //   image: state.car.image,
+    //   features: state.car.features
+    // },
+    store: state.store
+    // store: state.store.map(state => {
+    //   return { id: state.id, name: state.name, price: state.price }
+    // })
   };
 };
 
 export default connect(
   mapStateToProps,
-  { addFeatureAC }
+  { addFeatureAC, removeFeatureAC }
 )(App); // function currying
