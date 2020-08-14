@@ -1,26 +1,24 @@
-import React from 'react';
+import React from "react";
 
-import Header from './components/Header';
-import AddedFeatures from './components/AddedFeatures';
-import AdditionalFeatures from './components/AdditionalFeatures';
-import Total from './components/Total';
+import Header from "./components/Header";
+import AddedFeatures from "./components/AddedFeatures";
+import AdditionalFeatures from "./components/AdditionalFeatures";
+import Total from "./components/Total";
 
-import { connect } from 'react-redux';
-import { addFeatureAC, removeFeatureAC } from './actions';
+import { connect } from "react-redux";
+import { addFeatureAC, removeFeatureAC } from "./actions";
 // import { dispatch } from 'rxjs/internal/observable/pairs';
 
 const App = (props) => {
   console.log(props);
 
-
-
-  const removeFeature = item => {
+  const removeFeature = (item) => {
     // dispatch an action here to remove an item
     props.removeFeatureAC(item);
     console.log(item);
   };
 
-  const buyItem = item => {
+  const addFeature = (item) => {
     // console.log(item)
     // dipsatch an action here to add an item
     props.addFeatureAC(item);
@@ -34,32 +32,20 @@ const App = (props) => {
         <AddedFeatures car={props.car} removeFeature={removeFeature} />
       </div>
       <div className="box">
-        <AdditionalFeatures store={props.store} addFeature={buyItem} />
+        <AdditionalFeatures store={props.store} addFeature={addFeature} />
         <Total car={props.car} additionalPrice={props.additionalPrice} />
       </div>
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   // console.log('mSTP state:', state);
   return {
     additionalPrice: state.additionalPrice,
     car: state.car,
-    // car: {
-    //   price: state.car.price,
-    //   name: state.car.name,
-    //   image: state.car.image,
-    //   features: state.car.features
-    // },
-    store: state.store
-    // store: state.store.map(state => {
-    //   return { id: state.id, name: state.name, price: state.price }
-    // })
+    store: state.store,
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { addFeatureAC, removeFeatureAC }
-)(App); // function currying
+export default connect(mapStateToProps, { addFeatureAC, removeFeatureAC })(App); // function currying
